@@ -226,7 +226,7 @@ export default {
             if (insertStep !== -1) {
               htmlEditRef && htmlEditRef.scrollTo({
                 top: (htmlEditPreRef.offsetHeight - htmlEditRef.offsetHeight) / 2,
-                left: (htmlEditPreRef.offsetWidth - htmlEditRef.offsetWidth) / 2,
+                left: 1000,
               })
             } else {
               htmlEditRef && htmlEditRef.scrollTo({
