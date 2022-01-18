@@ -1,5 +1,5 @@
 export default [
-  // 1. 添加基本样式
+  // 0. 添加基本样式
   `
   /* 首先给所有元素加上过渡效果 */
   * {
@@ -25,7 +25,7 @@ export default [
     color: rgb(42,161,152); 
   }
   `,
-  // 创建编辑器本身的样式
+  // 1.创建编辑器本身的样式
   `
   /* 我们需要做一个铺满全屏的容器 */
     .container{
@@ -35,7 +35,7 @@ export default [
       justify-content: space-between;
       align-items: center;
     }
-    /* 代码编辑区域30%宽度吧，多留一些空间给预览区域 */
+    /* 代码编辑区域50%宽度，留一些空间给预览区域 */
     .edit{
       width: 50%;
       height: 100%;
@@ -67,71 +67,28 @@ export default [
       justify-content: center;
       height: 100%;
     }
+
+    /* 好啦~ 你应该看到一个编辑器的基本感觉了，我们要开始画灯笼咯 */
   `,
+  // 2
   `
-  /* 灯笼容器 */
-  .lantern-con {
+  /* 给灯笼的大肚子整样式 */
+  .lantern-container {
     position: relative;
   }
 
-  /* 灯笼中间红色区域 */
   .lantern-light {
     position: relative;
     width: 120px;
     height: 90px;
-    background-color: red;
-    margin: 30px;
+    background-color: #ff0844;
     border-radius: 50%;
-    box-shadow: -5px 5px 50px 4px #fa6c00;
-    /* 设置旋转点 */
-    transform-origin: top center;
-    animation: swing 3s infinite ease-in-out;
+    box-shadow: -5px 5px 100px 4px #fa6c00;
+    animation: wobble 2.5s infinite ease-in-out;
+    transform-style: preserve-3d;
   }
-
-  /* 灯笼顶部和底部的样式 */
-  .lantern-light::before,
-  .lantern-light::after {
-    content: "";
-    position: absolute;
-    border: 1px solid #dc8f03;
-    width: 60px;
-    height: 12px;
-    /* 背景渐变 */
-    background: linear-gradient(
-      to right,
-      #dc8f03,
-      #ffa500,
-      #dc8f03,
-      #ffa500,
-      #dc8f03
-    );
-    left: 30px;
-  }
-
-  /* 顶部位置 */
-  .lantern-light::before {
-    top: -7px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-
-  /* 底部位置 */
-  .lantern-light::after {
-    bottom: -7px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
-
-  /* 提着灯笼的线的样式 */
-  .lantern-line {
-    width: 2px;
-    height: 50px;
-    background-color: #dc8f03;
-    position: absolute;
-    left: 88px;
-  }
-  /* 灯笼的动画效果 */
-  @keyframes swing {
+  /* 让他动起来吧 */
+  @keyframes wobble {
     0% {
       transform: rotate(-6deg);
     }
@@ -144,55 +101,91 @@ export default [
       transform: rotate(-6deg);
     }
   }
+  `,
+  // 3
+  `
+  /* 顶部的灯笼线 */
+  .lantern-top-line {
+    width: 4px;
+    height: 50px;
+    background-color: #d1bb73;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -20px;
+    border-radius: 2px 2px 0 0;
+  }
+  `,
+  // 4
+  `
+  /* 灯笼顶部、底部盖子样式 */
+  .lantern-hat-top,
+  .lantern-hat-bottom {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 12px;
+    background-color: #ffa500;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  /* 顶部位置 */
+  .lantern-hat-top {
+    top: -8px;
+    border-radius: 6px 6px 0 0;
+  }
+  /* 底部位置 */
+  .lantern-hat-bottom {
+    bottom: -8px;
+    border-radius: 0 0 6px 6px;
+  }
+  `,
+  // 5
+  `
   /* 灯笼中间的线条 */
-  .lantern-circle,
-  .lantern-rect {
+  .lantern-line-out,
+  .lantern-line-innner {
     height: 90px;
     border-radius: 50%;
-    border: 2px solid #dc8f03;
+    border: 2px solid #ffa500;
     background-color: rgba(216, 0, 15, 0.1);
   }
-
-  /* 外层 */
-  .lantern-circle {
+  /* 线条外层 */
+  .lantern-line-out {
     width: 100px;
     margin: 12px 8px 8px 10px;
   }
-
-  /* 内层 */
-  .lantern-rect {
+  /* 线条内层 */
+  .lantern-line-innner {
     margin: -2px 8px 8px 26px;
     width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
-  /* 文字样式 */
-  .lantern-text {
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
-    color: #dc8f03;
-    margin-top: 4px;
-  }
-  /* 灯穗 */
-  .lantern-tassel-top {
-    width: 5px;
-    height: 20px;
+  `,
+  // 6
+  `
+  /* 灯笼底部线条 */
+  .lantern-rope-top {
+    width: 6px;
+    height: 18px;
     background-color: #ffa500;
     border-radius: 0 0 5px 5px;
     position: relative;
-    margin: -5px 0 0 59px;
+    margin: -5px 0 0 60px;
     /* 让灯穗也有一个动画效果 */
-    animation: swing 3s infinite ease-in-out;
+    animation: wobble 2.5s infinite ease-in-out;
   }
 
-  .lantern-tassel-middle,
-  .lantern-tassel-bottom {
+  .lantern-rope-middle,
+  .lantern-rope-bottom {
     position: absolute;
     width: 10px;
     left: -2px;
   }
 
-  .lantern-tassel-middle {
+  .lantern-rope-middle {
     border-radius: 50%;
     top: 14px;
     height: 10px;
@@ -200,12 +193,21 @@ export default [
     z-index: 2;
   }
 
-  .lantern-tassel-bottom {
+  .lantern-rope-bottom {
     background-color: #ffa500;
     border-bottom-left-radius: 5px;
     height: 35px;
     top: 18px;
     z-index: 1;
+  }
+  `,
+  // 7
+  `
+  /* 福样式 */
+  .lantern-fu {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffa500;
   }
   `
 ]

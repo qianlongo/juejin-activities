@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import newYear2022 from './new-year-2022'
+import newYear2022Routes from './new-year-2022'
 
 Vue.use(VueRouter)
 
 const routes = [
-  ...newYear2022,
+  ...newYear2022Routes,
 ]
 
 const router = new VueRouter({
