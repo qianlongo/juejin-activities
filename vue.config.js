@@ -1,5 +1,5 @@
 module.exports = {
   // 选项...
-  publicPath: '/juejin-activies/dist',
+  publicPath: '/juejin-activities/dist',
   lintOnSave: false
 }
