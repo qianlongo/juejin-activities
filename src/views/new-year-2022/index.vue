@@ -147,7 +147,10 @@ export default {
               </style>
             `
             start += 1
-
+            document.body.scrollTo({
+              top: 10000,
+              left: 0,
+            })
             document.documentElement.scrollTo({
               top: 10000,
               left: 0,
